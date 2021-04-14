@@ -1,0 +1,48 @@
+@model BookManagementApp.Models.Person
+
+@{
+    ViewData["Title"] = "ログイン";
+}
+
+<div class="spacer"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 text-center page-title">
+            <h1>ログイン</h1>
+        </div>
+    </div>
+</div>
+<div class="spacer"></div>
+
+<p>@ViewData["Message"]</p>
+
+<form class="contianer" method="POST" asp-action="Form" asp-controller="Login">
+    <div class="row spacer"></div>
+    <div class="row center-block">
+        <div class="col-md-4 offset-md-4 header">
+            <span>ログインID</span>
+        </div>
+    </div>
+    <div class="row center-block">
+        <div class="col-md-4 offset-md-4">
+            <input asp-for="UserId" class="form-control" placeholder="example">
+        </div>
+    </div>
+    <div class="row center-block">
+        <div class="col-md-4 offset-md-4 header">
+            <span>パスワード</span>
+        </div>
+    </div>
+    <div class="row center-block">
+        <div class="col-md-4 offset-md-4">
+            <input asp-for="Password" type="password" class="form-control" placeholder="***">
+        </div>
+    </div>
+    <div class="row spacer">
+    </div>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <button type="submit" class="btn btn-fill btn-primary">ログイン</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,131 @@
+@model BookManagementApp.Models.Book
+
+@{
+    ViewData["Title"] = "書籍登録";
+}
+
+<div class="spacer"></div>
+<div class="contianer">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 text-center page-title">
+            <h1>書籍登録</h1>
+        </div>
+    </div>
+</div>
+
+<div class="spacer"></div>
+
+<form asp-action="Register" method="POST">
+    <div class="contianer input-box">
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-offset-1 box-header">
+                <span>
+                    タイトル
+                </span>
+            </div>
+            <div class="col-md-6 col-xs-offset-1">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-offset-1 box-header">
+                <span>
+                    著者
+                </span>
+            </div>
+            <div class="col-md-6 col-xs-offset-1">
+                <input asp-for="Writer" class="form-control" />
+                <span asp-validation-for="Writer" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-offset-1 box-header">
+                <span>
+                    出版社
+                </span>
+            </div>
+            <div class="col-md-6 col-xs-offset-1">
+                
+                <input asp-for="Company" class="form-control" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-offset-1 box-header">
+                <span>
+                    価格
+                </span>
+            </div>
+            <div class="col-md-6 col-xs-offset-1">
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-offset-1 box-header">
+                <span>
+                    購入日
+                </span>
+            </div>
+            <div class="col-md-6 col-xs-offset-1">
+                <input asp-for="Buydate" class="form-control"/>
+                <span asp-validation-for="Buydate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-offset-1 box-header">
+                <span>
+                    書籍管理部門
+                </span>
+            </div>
+            <div class="col-md-6 col-xs-offset-1">
+                <input asp-for="ManagementDepartment" class="form-control" />
+                <span asp-validation-for="ManagementDepartment" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-offset-1 box-header">
+                <span>
+                    更新日
+                </span>
+            </div>
+            <div class="col-md-6 col-xs-offset-1">
+                @ViewData["Now"]
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-offset-1 box-header">
+                <span>
+                    更新者
+                </span>
+            </div>
+            <div class="col-md-6 col-xs-offset-1">
+                @ViewData["UserId"]
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-offset-1 box-header">
+                <span>
+                    更新者部署
+                </span>
+            </div>
+            <div class="col-md-6 col-xs-offset-1">
+                @ViewData["DepartmentName"]
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 offset-md-1 col-sm-4 offset-sm-1">
+                <button class="btn btn-fill btn-default" asp-action="Index" asp-controller="BookManagement">戻る</button>
+            </div>
+            <div class="col-md-2 offset-md-6 col-sm-4 offset-sm-2">
+                <button type="submit" class="btn btn-fill btn-primary" value="Register">登録</button>
+            </div>
+        </div>
+    </div>
+</form>

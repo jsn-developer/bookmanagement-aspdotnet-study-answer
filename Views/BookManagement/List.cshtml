@@ -1,0 +1,142 @@
+@model IEnumerable<BookManagementApp.Models.Book>
+
+@{
+    ViewData["Title"] = "書籍一覧";
+    var booktitle = ViewData["booktitle"];
+    var author = ViewData["author"];
+    var publisher = ViewData["publisher"];
+    var count = 0;
+}
+
+<div class="spacer"></div>
+<div class="contianer">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 text-center page-title">
+            <h1>書籍一覧</h1>
+        </div>
+    </div>
+</div>
+
+<div class="spacer"></div>
+
+<form asp-action="List" method="POST">
+    <div class="contianer input-box">
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-10 col-xs-offset-1 col-sm-10 offset-sm-1 box-header">
+                <span>
+                    タイトル
+                </span>
+            </div>
+            <div class="col-md-6 offset-md-0 col-xs-10 col-xs-offset-1 col-sm-10 offset-sm-1">
+                <input asp-for="@booktitle" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-10 col-xs-offset-1 col-sm-10 offset-sm-1 box-header">
+                <span>
+                    著者
+                </span>
+            </div>
+            <div class="col-md-6 offset-md-0 col-xs-10 col-xs-offset-1 col-sm-10 offset-sm-1">
+                <input asp-for="@author" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-10 col-xs-offset-1 col-sm-10 offset-sm-1 box-header">
+                <span>
+                    出版社
+                </span>
+            </div>
+            <div class="col-md-6 offset-md-0 col-xs-10 col-xs-offset-1 col-sm-10 offset-sm-1">
+                <input asp-for="@publisher" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-10 col-xs-offset-1 col-sm-10 offset-sm-1 box-header">
+                <span>
+                    &nbsp;
+                </span>
+            </div>
+            <div class="col-md-6 offset-md-0 col-xs-10 col-xs-offset-1 col-sm-10 offset-sm-1">
+                <div class="form-check">
+                    <input type="checkbox" id="flagCheck" name="flag" value="flag" class="form-check-input">
+                    <label for="flagCheck" class="form-check-label">自部門の書籍に限定</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-8 col-xs-10 col-xs-offset-1 col-sm-10 offset-sm-1">
+                <input type="submit" class="btn btn-fill btn-primary" value="検索">
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="spacer"></div>
+
+@foreach (var item in Model)
+{
+    count++;
+}
+
+@if (count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Writer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Company)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr onclick="moveDetail('@item.BookId')">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Writer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="contianer input-box">
+        <div class="row">
+            <div class="col-md-2 offset-md-2 col-xs-10 col-xs-offset-1 col-sm-10 offset-sm-1 box-header">
+                <span>
+                    検索結果は0件です
+                </span>
+            </div>
+        </div>
+    </div>
+}
+
+<a asp-action="Register">
+    <div class="floating">
+        <span>
+            <i class="fa fa-plus" style="margin-top: 8px; margin-left: 3px;"></i>
+        </span>
+    </div>
+</a>
+
+<script>
+    function moveDetail(id) {
+        window.location.href = '@Url.Action("Detail","BookManagement")/' + id;
+    }
+</script>
