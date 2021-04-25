@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+    app:
+        build:
+            context: .
+            args:
+                VARIANT": "5.0"
+                INSTALL_NODE: "true"
+                NODE_VERSION: "lts/*"
+                INSTALL_AZURE_CLI: "false"
+        ports:
+            - 5000:5000
+        volumes:
+            # - obj:/workspace/obj
+            # - bin:/workspace/bin
+            - ../:/workspace
+        tty: true
+
+    db:
+        image: mysql:8.0.24
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: bookmanagement
+            MYSQL_USER: user
+            MYSQL_PASSWORD: user
